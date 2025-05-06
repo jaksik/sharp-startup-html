@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>My Projects & Tools</title>
+        <title>Sharp Startup AI Tool Directory</title>
         <script>
             // Apply the dark mode class early based on the saved theme in localStorage
             (function() {
@@ -34,9 +34,9 @@
             }
         </script>
         </head>
-<body class="font-mono p-4 sm:p-8 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
+        <body class="flex flex-col min-h-screen font-mono p-4 sm:p-8 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
 
-    <div class="max-w-3xl mx-auto">
+            <div class="max-w-3xl mx-auto flex-grow w-full">
 
         <header class="mb-4 relative"> <div class="flex justify-between items-center mb-4 sm:mb-6">
             <div class="flex-shrink-0">
@@ -97,7 +97,7 @@
 
         <main class="mb-12">
              <section id="tool-directory" class="mt-4 pt-8">
-                <h2 class="text-lg sm:text-xl mb-4 text-gray-600 dark:text-gray-400">AI-powered Business Tools</h2>
+                <h2 class="text-lg sm:text-xl mb-4 text-gray-600 dark:text-gray-400">AI-powered Tool Directory</h2>
     
                 <div id="tool-filters" class="mb-6 flex flex-wrap gap-2">
                     <span class="text-sm text-gray-500 dark:text-gray-400">Loading filters...</span>
@@ -109,12 +109,22 @@
             </section>
         </main>
 
-
-
-        <footer class="mt-16 text-center text-sm text-gray-500 dark:text-gray-400">
-            <p>&copy; <span id="year"></span> Sharp Startup LLC</p>
-        </footer>
     </div>
+
+
+    <footer class="w-full py-4 pb-0 text-center text-sm text-gray-500 dark:text-gray-400"> <div class="max-w-3xl mx-auto px-4 sm:px-8"> <div class="flex justify-center items-center space-x-4 mb-4">
+        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors duration-200">
+            <svg class="w-7 h-7 block dark:hidden" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M19.777 6.016a2.44 2.44 0 0 0-1.72-1.72C16.538 4 12 4 12 4s-4.538 0-6.057.296a2.44 2.44 0 0 0-1.72 1.72C4 7.534 4 12 4 12s0 4.466.296 6.057a2.44 2.44 0 0 0 1.72 1.72C7.462 20 12 20 12 20s4.538 0 6.057-.296a2.44 2.44 0 0 0 1.72-1.72C20 16.466 20 12 20 12s0-4.466-.223-5.984zM9.996 15.006V8.994l4.99 3.006-4.99 3.006z" clip-rule="evenodd"/></svg>
+            <svg class="w-7 h-7 hidden dark:block" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M19.777 6.016a2.44 2.44 0 0 0-1.72-1.72C16.538 4 12 4 12 4s-4.538 0-6.057.296a2.44 2.44 0 0 0-1.72 1.72C4 7.534 4 12 4 12s0 4.466.296 6.057a2.44 2.44 0 0 0-1.72 1.72C7.462 20 12 20 12 20s4.538 0 6.057-.296a2.44 2.44 0 0 0-1.72-1.72C20 16.466 20 12 20 12s0-4.466-.223-5.984zM9.996 15.006V8.994l4.99 3.006-4.99 3.006z" clip-rule="evenodd"/></svg>
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="X formerly Twitter" class="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors duration-200">
+            <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+    </div>
+    <p>&copy; <span id="year"></span> Sharp Startup LLC | Austin, TX <span style="font-size: 1.2em;">🇺🇸</span></p>
+</div>
+</footer>
 
     <script id="tool-data" type="application/json">
     [
