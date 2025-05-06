@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Sharp Startup</title>
+    <script>
+        // Apply the dark mode class early based on the saved theme in localStorage
+        (function() {
+            try {
+                const savedTheme = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.classList.add('dark');
+                }
+            } catch (e) {
+                console.warn('Error applying theme early:', e);
+            }
+        })();
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Configure Tailwind CSS for class-based dark mode and monospace font
+        tailwind.config = {
+            darkMode: 'class', // Enable class strategy for dark mode
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // Use Tailwind's default monospace stack
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    </head>
+<body class="font-mono p-4 sm:p-8 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
+
+    <div class="max-w-3xl mx-auto">
+
+        <header class="mb-4 relative"> <div class="flex justify-between items-center mb-4 sm:mb-6">
+                <div class="flex-shrink-0">
+                    <a href="./index.html" aria-label="Homepage"> <img id="logo-light" src="../assets/logo-dark-mode.png" alt="Logo Light" class="block dark:hidden h-8 sm:h-10 w-auto" onerror="this.style.display='none'; document.getElementById('logo-light-fallback').style.display='block';">
+                        <div id="logo-light-fallback" class="hidden dark:hidden h-8 sm:h-10 items-center justify-center text-xs text-gray-500" style="display: none; width: 100px; border: 1px dashed gray;">Light Logo</div>
+                        <img id="logo-dark" src="../assets/logo-light-mode.png" alt="Logo Dark" class="hidden dark:block h-8 sm:h-10 w-auto" onerror="this.style.display='none'; document.getElementById('logo-dark-fallback').style.display='block';">
+                        <div id="logo-dark-fallback" class="hidden dark:block h-8 sm:h-10 items-center justify-center text-xs text-gray-400" style="display: none; width: 100px; border: 1px dashed gray;">Dark Logo</div>
+                    </a>
+                </div>
+
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <nav class="hidden sm:flex space-x-4">
+                         <a href="./index.html" class="text-sm hover:underline text-gray-700 dark:text-gray-300 dark:hover:text-white">Home</a>
+                        <a href="./tools.html" class="text-sm hover:underline text-gray-700 dark:text-gray-300 dark:hover:text-white">Tools</a>
+                        <a href="./labs.html" class="text-sm hover:underline text-gray-700 dark:text-gray-300 dark:hover:text-white">Labs</a>
+                        <a href="./about.html" class="text-sm hover:underline text-gray-700 dark:text-gray-300 dark:hover:text-white">About</a>
+                    </nav>
+
+                    <button id="theme-toggle-desktop" type="button" title="Toggle dark/light mode"
+                            class="hidden sm:block p-1 rounded-md border border-black dark:border-white flex-shrink-0
+                                   transition-colors duration-200">
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6 block dark:hidden"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-6.364-.386 1.591-1.591M3 12h2.25m.386-6.364 1.591 1.591M12 12a2.25 2.25 0 0 0-2.25 2.25 2.25 2.25 0 0 0 2.25 2.25 2.25 2.25 0 0 0 2.25-2.25A2.25 2.25 0 0 0 12 12Z" />
+                         </svg>
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6 hidden dark:block"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+                         </svg>
+                         <span class="sr-only">Toggle theme</span>
+                     </button>
+
+                    <button id="mobile-menu-button" type="button" class="sm:hidden p-1 rounded-md border border-black dark:border-white flex-shrink-0 transition-colors duration-200" aria-label="Toggle menu" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                         <span class="sr-only">Open menu</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="hidden sm:hidden absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-10">
+                <nav class="flex flex-col space-y-1 p-2">
+                    <a href="./index.html" class="block px-3 py-2 rounded-md text-base hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 dark:hover:text-white">Home</a>
+                    <a href="./tools.html" class="block px-3 py-2 rounded-md text-base hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 dark:hover:text-white">Tools</a>
+                    <a href="./labs.html" class="block px-3 py-2 rounded-md text-base hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 dark:hover:text-white">Labs</a>
+                    <a href="./about.html" class="block px-3 py-2 rounded-md text-base hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 dark:hover:text-white">About</a>
+                    <div class="pt-2 mt-2 border-t border-gray-200 dark:border-gray-600 flex justify-center">
+                         <button id="theme-toggle-mobile" type="button" title="Toggle dark/light mode"
+                                 class="p-1 rounded-md border border-black dark:border-white flex-shrink-0
+                                        transition-colors duration-200">
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6 block dark:hidden"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-6.364-.386 1.591-1.591M3 12h2.25m.386-6.364 1.591 1.591M12 12a2.25 2.25 0 0 0-2.25 2.25 2.25 2.25 0 0 0 2.25 2.25 2.25 2.25 0 0 0 2.25-2.25A2.25 2.25 0 0 0 12 12Z" />
+                             </svg>
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6 hidden dark:block"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+                             </svg>
+                             <span class="sr-only">Toggle theme</span>
+                         </button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="mb-12">
+             <section id="about-content" class="mt-4 pt-8">
+                <h2 class="text-lg sm:text-xl mb-4 text-gray-600 dark:text-gray-400">About Sharp Startup</h2>
+
+                <p class="mb-4">
+                    Welcome to Sharp Startup! We are dedicated to providing insights and tools...
+                </p>
+                <p>
+                    Our mission is to empower entrepreneurs and businesses...
+                </p>
+
+            </section>
+        </main>
+
+        <footer class="mt-16 text-center text-sm text-gray-500 dark:text-gray-400">
+            <p>&copy; <span id="year"></span> Sharp Startup LLC</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- Theme Toggle Logic ---
+        const themeToggleBtns = document.querySelectorAll('#theme-toggle-desktop, #theme-toggle-mobile');
+        const htmlElement = document.documentElement;
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+        }
+
+        function toggleTheme() {
+            const isDarkMode = htmlElement.classList.contains('dark');
+            const newTheme = isDarkMode ? 'light' : 'dark';
+            applyTheme(newTheme);
+            try {
+                 localStorage.setItem('theme', newTheme);
+            } catch (e) { console.error("LocalStorage error:", e); }
+        }
+
+        if (themeToggleBtns.length > 0) {
+             themeToggleBtns.forEach(btn => {
+                btn.addEventListener('click', toggleTheme);
+            });
+        }
+
+        // --- Initial Theme Load ---
+        (function() {
+            let initialTheme = 'light';
+            try {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || savedTheme === 'light') {
+                    initialTheme = savedTheme;
+                } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    initialTheme = 'dark';
+                }
+            } catch (e) { console.warn("Could not access theme preference.", e); }
+            applyTheme(initialTheme);
+        })();
+
+        // --- Footer Year Update ---
+        try {
+            const yearSpan = document.getElementById('year');
+            if(yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        } catch (e) { console.error("Could not find 'year' element.", e); }
+
+        // --- Mobile Menu Toggle Logic ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Function to close the mobile menu
+        function closeMobileMenu() {
+             if (mobileMenu && mobileMenuButton) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        // Toggle menu on button click
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', (event) => {
+                // Stop this click from propagating to the document listener below
+                event.stopPropagation();
+                const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            });
+        }
+
+        // Close menu if clicking outside of it
+        document.addEventListener('click', (event) => {
+            // Check if the menu exists, is open, and the click was outside both the menu and the button
+            if (mobileMenu && mobileMenuButton &&
+                !mobileMenu.classList.contains('hidden') &&
+                !mobileMenu.contains(event.target) &&
+                !mobileMenuButton.contains(event.target) ) {
+                closeMobileMenu();
+            }
+        });
+
+        // Optional: Close menu on Escape key press
+        document.addEventListener('keydown', (event) => {
+             if (event.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                 closeMobileMenu();
+             }
+        });
+
+
+        // --- Tool Directory Logic (Removed as this is the About page) ---
+        // No tool directory logic needed on the 'About' page.
+
+    </script>
+
+</body>
+</html>
